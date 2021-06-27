@@ -26,13 +26,14 @@
         android:layout_marginStart="@dimen/offset"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="@string/nmedia"
+        android:text="@sample/post.json/data/author"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintBottom_toTopOf="@id/published"
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        tools:text="@sample/posts.json/data/author" />
+        tools:text = "@sample/post.json/data/author"
+        />
 
     <TextView
         android:id="@+id/published"
@@ -41,12 +42,12 @@
         android:layout_marginStart="@dimen/offset"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="@string/nmedia"
+        android:text="@sample/post.json/data/published"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/author"
-        tools:text="@sample/posts.json/data/author" />
+        tools:text="@sample/post.json/data/published" />
 
     <ImageButton
         android:id="@+id/menu"
@@ -72,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
         android:layout_marginBottom="@dimen/offset"
-        android:text="@string/textview"
+        android:text="@sample/post.json/data/content"
         app:layout_constraintBottom_toBottomOf="@id/barrier2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
