@@ -89,47 +89,47 @@
 
         tools:layout_editor_absoluteY="72dp" />
 
-    <ImageView
-        android:id="@+id/hard"
+    <ImageButton
+        android:id="@+id/like"
         android:layout_width="39dp"
         android:layout_height="37dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrier2"
-        app:srcCompat="@mipmap/hard"
-        tools:srcCompat="@mipmap/hard" />
+        android:background="@drawable/hard"
+        />
 
     <TextView
-        android:id="@+id/likes"
+        android:id="@+id/countLike"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="54"
-        app:layout_constraintBottom_toBottomOf="@id/hard"
-        app:layout_constraintStart_toEndOf="@id/hard"
-        app:layout_constraintTop_toTopOf="@id/hard"
+        app:layout_constraintBottom_toBottomOf="@id/like"
+        app:layout_constraintStart_toEndOf="@id/like"
+        app:layout_constraintTop_toTopOf="@id/like"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="136dp" />
 
-    <ImageView
-        android:id="@+id/comment"
+    <ImageButton
+        android:id="@+id/shared"
         android:layout_width="39dp"
         android:layout_height="37dp"
-        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintStart_toEndOf="@id/countLike"
         app:layout_constraintTop_toTopOf="@id/barrier2"
-        app:srcCompat="@mipmap/comment_1"
-        tools:srcCompat="@sample/posts_avatars" />
+        android:background="@mipmap/comment_1"
+        />
 
     <TextView
-        android:id="@+id/count"
+        android:id="@+id/countShared"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="71"
-        app:layout_constraintBottom_toBottomOf="@id/comment"
-        app:layout_constraintStart_toEndOf="@id/comment"
-        app:layout_constraintTop_toTopOf="@id/comment"
+        app:layout_constraintBottom_toBottomOf="@id/shared"
+        app:layout_constraintStart_toEndOf="@id/shared"
+        app:layout_constraintTop_toTopOf="@id/shared"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="136dp" />
 
@@ -150,16 +150,16 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="710"
-        app:layout_constraintBottom_toBottomOf="@id/comment"
+        app:layout_constraintBottom_toBottomOf="@id/shared"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/comment" />
+        app:layout_constraintTop_toTopOf="@id/shared" />
 
     <View
         android:id="@+id/line"
         android:layout_width="359dp"
         android:layout_height="3dp"
         android:background="@color/design_default_color_error"
-        app:layout_constraintTop_toBottomOf="@id/hard"
+        app:layout_constraintTop_toBottomOf="@id/like"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
        />
