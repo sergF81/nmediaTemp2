@@ -48,9 +48,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.shared.setOnClickListener {
             post.sharedCount++
-                binding.countShared.setText(transferToK(post.sharedCount))
+            binding.countShared.setText(transferToK(post.sharedCount))
         }
+
     }
+
 }
 
 
