@@ -32,8 +32,7 @@
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        tools:text = "@sample/post.json/data/author"
-        />
+        tools:text="@sample/post.json/data/author" />
 
     <TextView
         android:id="@+id/published"
@@ -93,11 +92,10 @@
         android:id="@+id/like"
         android:layout_width="39dp"
         android:layout_height="37dp"
+        android:background="@drawable/hard"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
-        android:background="@drawable/hard"
-        />
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
 
     <TextView
         android:id="@+id/countLike"
@@ -105,7 +103,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="54"
         app:layout_constraintBottom_toBottomOf="@id/like"
         app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toTopOf="@id/like"
@@ -116,10 +113,9 @@
         android:id="@+id/shared"
         android:layout_width="39dp"
         android:layout_height="37dp"
-        app:layout_constraintStart_toEndOf="@id/countLike"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
         android:background="@mipmap/comment_1"
-        />
+        app:layout_constraintStart_toEndOf="@id/countLike"
+        app:layout_constraintTop_toTopOf="@id/barrier2" />
 
     <TextView
         android:id="@+id/countShared"
@@ -159,10 +155,9 @@
         android:layout_width="359dp"
         android:layout_height="3dp"
         android:background="@color/design_default_color_error"
-        app:layout_constraintTop_toBottomOf="@id/like"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-       />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/like" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
