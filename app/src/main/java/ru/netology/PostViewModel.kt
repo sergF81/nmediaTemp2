@@ -8,5 +8,4 @@ class PostViewModel : ViewModel() {
     fun likeOnOff(id: Int) = repository.likeOnOff(id)
     fun like(id: Int) = repository.like(id)
     fun share(id: Int) = repository.share(id)
-
 }
