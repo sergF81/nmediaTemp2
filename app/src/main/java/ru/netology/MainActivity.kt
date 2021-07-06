@@ -12,25 +12,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        viewModel.data.observe(this) { post ->
-            with(binding) {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                countLike.text = post.likesCount.toString()
-                countShared.text = post.sharedCount.toString()
-                like.setImageResource(
-                    if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
-                )
-            }
-        }
-        binding.like.setOnClickListener {
-            viewModel.likeOnOff()
-            binding.countLike.text = transferToK(viewModel.like())
-        }
+        val adapter = PostsAdapter(likeListener = {
+            viewModel.likeOnOff(it.id)
+            viewModel.like(it.id)
+        } , shareListener = {
+            viewModel.share(it.id)
+        })
 
-        binding.shared.setOnClickListener {
-            binding.countShared.text = transferToK(viewModel.shared())
+        binding.list.adapter = adapter
+        viewModel.data.observe(this) { posts ->
+            adapter.list = posts
         }
     }
 }
