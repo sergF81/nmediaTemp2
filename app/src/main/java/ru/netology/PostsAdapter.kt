@@ -2,63 +2,56 @@ package ru.netology
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.databinding.CardPostBinding
 
-typealias LikeListener = (post: Post) -> Unit
-typealias ShareListener = (post: Post) -> Unit
+interface CallBackPost {
+    fun liked(post: Post)
+    fun shared(post: Post)
+}
 
-//interface CallBack{
-//    fun liked(post: Post)
-//    fun shared(shareCount: Int)
-//}
 class PostsAdapter(
-    private val likeListener: LikeListener,
-    private val shareListener: ShareListener
+
+    private val callBackPost: CallBackPost
 ) :
-    RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
-    var list = emptyList<Post>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, likeListener, shareListener)
+        return PostViewHolder(binding, callBackPost)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(list[position])
+        val post = getItem(position)
+        holder.bind(post)
     }
+}
 
-    override fun getItemCount() = list.size
+class PostViewHolder(
+    private val binding: CardPostBinding,
+    private val callBackPost: CallBackPost
+) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(post: Post) {
 
-    class PostViewHolder(
-        private val binding: CardPostBinding,
-        private val likeListener: LikeListener,
-        private val shareListener: ShareListener
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: Post) {
+        binding.apply {
+            author.text = post.author
+            published.text = post.published
+            content.text = post.content
+            countLike.text = transferToK(post.likesCount)
+            countShared.text = transferToK(post.sharedCount)
+            like.setImageResource(
+                if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
+            )
 
-            binding.apply {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                countLike.text = transferToK(post.likesCount)
-                countShared.text = transferToK(post.sharedCount)
-                like.setImageResource(
-                    if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
-                )
+            like.setOnClickListener {
+                callBackPost.liked(post)
+            }
 
-                like.setOnClickListener {
-                    likeListener(post)
-                }
-
-                shared.setOnClickListener {
-                    shareListener(post)
-                }
+            shared.setOnClickListener {
+                callBackPost.shared(post)
             }
         }
     }
