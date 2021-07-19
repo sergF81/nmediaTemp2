@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class PostRepositoryInMemoryImpl : PostRepository {
+    private var nextId = 1
+
     private var posts = listOf(
         Post(
-            id = 1,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
@@ -15,7 +17,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             sharedCount = 99
         ),
         Post(
-            id = 2,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Это какая то непонятная жесть!",
             published = "5 июля в 00:30",
@@ -24,7 +26,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             sharedCount = 9983
         ),
         Post(
-            id = 3,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Что то косяк какой то вышел!",
             published = "5 июля в 00:30",
@@ -33,7 +35,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
             sharedCount = 203013
         ),
         Post(
-            id = 4,
+            id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Тут нужен очень длинный текст, чтобы увидет отличие постов, а то с короткими неудобно что-либо оценивать!",
             published = "5 июля в 00:30",
@@ -81,4 +83,25 @@ class PostRepositoryInMemoryImpl : PostRepository {
         }
         data.value = posts
     }
+
+    override fun removeById(id: Int) {
+
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if (post.id == 0) {
+            posts = listOf(
+                post.copy(
+                    id = nextId++, author = "Me", likedByMe = false, published = "Now"
+                )
+            ) + posts
+        } else {
+posts = posts.map{if (it.id != post.id) it else it.copy(content = post.content)}
+        }
+        data.value = posts
+
+    }
+
 }

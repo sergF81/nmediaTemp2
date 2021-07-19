@@ -2,6 +2,7 @@ package ru.netology
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.databinding.CardPostBinding
@@ -9,6 +10,9 @@ import ru.netology.databinding.CardPostBinding
 interface CallBackPost {
     fun liked(post: Post)
     fun shared(post: Post)
+    fun removed(post: Post)
+    fun edited(post: Post)
+    fun canceled(post: Post)
 }
 
 class PostsAdapter(
@@ -39,7 +43,7 @@ class PostViewHolder(
         binding.apply {
             author.text = post.author
             published.text = post.published
-            content.text = post.content
+            contents.text = post.content
             countLike.text = transferToK(post.likesCount)
             countShared.text = transferToK(post.sharedCount)
             like.setImageResource(
@@ -52,6 +56,31 @@ class PostViewHolder(
 
             shared.setOnClickListener {
                 callBackPost.shared(post)
+            }
+
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.menu_post)
+                    setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.remove_post -> {
+                                callBackPost.removed(post)
+                                true
+
+                            }
+                            R.id.edit_post -> {
+                                callBackPost.edited(post)
+                                callBackPost.canceled(post)
+                                true
+
+                            }
+                            else -> false
+
+                        }
+                    }
+
+                }.show()
+
             }
         }
     }

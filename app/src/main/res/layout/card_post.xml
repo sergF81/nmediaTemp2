@@ -67,7 +67,7 @@
         tools:layout_editor_absoluteY="72dp" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/contents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content"
+        app:constraint_referenced_ids="contents"
 
         tools:layout_editor_absoluteY="72dp" />
 
@@ -154,6 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/like" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

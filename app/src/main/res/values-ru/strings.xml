@@ -3,4 +3,6 @@
     <string name="app_name">НМедиа</string>
     <string name="nmedia">НМедиа!</string>
     <string name="textview">TextView</string>
+    <string name="menu_remove">Удаление</string>
+    <string name="menu_edit">Редактирование</string>
 </resources>
