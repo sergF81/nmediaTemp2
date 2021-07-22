@@ -44,7 +44,7 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             contents.text = post.content
-            countLike.text = transferToK(post.likesCount)
+            like.text = transferToK(post.likesCount)
             shared.text = transferToK(post.sharedCount)
             like.isChecked = post.likedByMe
 //            like.setImageResource(
@@ -53,6 +53,7 @@ class PostViewHolder(
 
             like.setOnClickListener {
                 callBackPost.liked(post)
+                like.text = transferToK(post.likesCount)
             }
 
             shared.setOnClickListener {
