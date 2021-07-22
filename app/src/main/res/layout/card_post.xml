@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/offset"
 
-   >
+    >
 
     <ImageView
         android:id="@+id/avatar"
@@ -48,15 +48,15 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/post.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.AppCompat.PointButton"
         android:id="@+id/menu"
         android:layout_width="49dp"
         android:layout_height="41dp"
-        android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24"
-        tools:ignore="VectorDrawableCompat" />
+        app:iconTint="@color/menu_button_tint"
+        app:icon="@drawable/ic_baseline_more_vert_24" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -88,11 +88,14 @@
 
         tools:layout_editor_absoluteY="72dp" />
 
-    <ImageButton
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/like"
+        style="@style/Widget.AppCompat.LikeCheckBox"
         android:layout_width="39dp"
         android:layout_height="37dp"
-        android:background="@drawable/hard"
+        app:icon="@drawable/ic_liked_all"
+        android:button="@drawable/ic_liked_all"
+        android:checked="true"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrier2" />
@@ -107,23 +110,18 @@
         app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toTopOf="@id/like" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/shared"
-        android:layout_width="39dp"
+        style="@style/Widget.AppCompat.SharedButton"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:background="@mipmap/comment_1"
+        app:iconTint="@color/shared_button_tint"
+        android:textColor = "@color/shared_button_tint"
+        app:icon="@drawable/ic_shared"
+
         app:layout_constraintStart_toEndOf="@id/countLike"
         app:layout_constraintTop_toTopOf="@id/barrier2" />
 
-    <TextView
-        android:id="@+id/countShared"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:singleLine="true"
-        app:layout_constraintBottom_toBottomOf="@id/shared"
-        app:layout_constraintStart_toEndOf="@id/shared"
-        app:layout_constraintTop_toTopOf="@id/shared" />
 
     <ImageView
         android:id="@+id/eye"
@@ -154,7 +152,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/like" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,10 +45,11 @@ class PostViewHolder(
             published.text = post.published
             contents.text = post.content
             countLike.text = transferToK(post.likesCount)
-            countShared.text = transferToK(post.sharedCount)
-            like.setImageResource(
-                if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
-            )
+            shared.text = transferToK(post.sharedCount)
+            like.isChecked = post.likedByMe
+//            like.setImageResource(
+//                if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
+//            )
 
             like.setOnClickListener {
                 callBackPost.liked(post)
@@ -56,6 +57,7 @@ class PostViewHolder(
 
             shared.setOnClickListener {
                 callBackPost.shared(post)
+                shared.text = transferToK(post.sharedCount)
             }
 
             menu.setOnClickListener {
