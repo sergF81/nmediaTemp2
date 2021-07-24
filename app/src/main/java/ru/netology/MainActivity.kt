@@ -2,11 +2,13 @@ package ru.netology
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import ru.netology.databinding.ActivityMainBinding
@@ -18,12 +20,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+
         val adapter = PostsAdapter(object : CallBackPost {
             override fun liked(post: Post) {
                 viewModel.like(post.id)
             }
 
             override fun shared(post: Post) {
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    type = "text/plain"
+                }
+
+                val shareIntent =
+                    Intent.createChooser(intent, getString(R.string.chooser_share_post))
+                startActivity(shareIntent)
                 viewModel.share(post.id)
             }
 
@@ -31,15 +43,24 @@ class MainActivity : AppCompatActivity() {
                 viewModel.removeById(post.id)
             }
 
+            val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
+                result ?: return@registerForActivityResult
+                viewModel.changeContent(result)
+                viewModel.save()
+            }
+
             override fun edited(post: Post) {
+                val content = post.content
+                intent.putExtra(Intent.EXTRA_TEXT, content)
+                setResult(Activity.RESULT_OK, intent)
+                editPostLauncher.launch()
                 viewModel.edit(post)
+
+                startActivity(intent)
             }
 
             override fun canceled(post: Post) {
-                binding.group.visibility = View.VISIBLE
-                with(binding.contentTemp) {
-                    setText(post.content)
-                }
+
             }
         })
 
@@ -49,35 +70,14 @@ class MainActivity : AppCompatActivity() {
             binding.list.smoothScrollToPosition(0)
         }
 
-        viewModel.edited.observe(this) { post ->
-            if (post.id == 0) {
-                return@observe
-            }
-            with(binding.content) {
-                requestFocus()
-                setText(post.content)
-            }
-
-        }
-        binding.save.setOnClickListener {
-            val content = binding.content.text.toString()
-            if (content.isBlank()) {
-                Toast.makeText(this, "empty content", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            viewModel.changeContent(content)
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContent(result)
             viewModel.save()
-            binding.content.setText("")
-            binding.content.clearFocus()
-            hideKeyboardFrom(this, binding.save)
-            binding.group.visibility = View.INVISIBLE
         }
 
-        binding.cancelEdit.setOnClickListener {
-            binding.group.visibility = View.INVISIBLE
-            binding.content.setText("")
-            binding.content.clearFocus()
-            hideKeyboardFrom(this, binding.cancelEdit)
+        binding.fab.setOnClickListener {
+            newPostLauncher.launch()
         }
 
     }

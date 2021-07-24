@@ -73,7 +73,9 @@ class PostViewHolder(
                             }
                             R.id.edit_post -> {
                                 callBackPost.edited(post)
-                                callBackPost.canceled(post)
+
+                             //   callBackPost.canceled(post)
+
                                 true
 
                             }

@@ -4,7 +4,7 @@ fun transferToK(counts: Int): String {
 
     var conuntK: String
     conuntK = when (counts) {
-        in 1..999 -> counts.toString()
+        in 0..999 -> counts.toString()
         in 1000..9999 -> (counts / 1000).toString() + if ((counts % 1000) / 100 == 0) "" else {
             "." + (counts % 1000) / 100
         } + "K"
