@@ -50,13 +50,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun edited(post: Post) {
-                val content = post.content
-                intent.putExtra(Intent.EXTRA_TEXT, content)
-                setResult(Activity.RESULT_OK, intent)
-                editPostLauncher.launch()
+//                val content = post.content
+//                intent.putExtra(Intent.EXTRA_TEXT, content)
+//                setResult(Activity.RESULT_OK, intent)
+                editPostLauncher.launch(post.content)
                 viewModel.edit(post)
-
-                startActivity(intent)
             }
 
             override fun canceled(post: Post) {

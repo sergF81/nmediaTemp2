@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="343dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="515dp"
         tools:ignore="MissingConstraints" />
 

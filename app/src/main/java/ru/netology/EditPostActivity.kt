@@ -3,6 +3,7 @@ package ru.netology
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.launch
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.databinding.ActivityEditPostBinding
 
@@ -15,6 +16,9 @@ class EditPostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityEditPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+            binding.contentTemp.text = intent.getStringExtra(Intent.EXTRA_TEXT)
+
 
         binding.editTemp.requestFocus()
 
