@@ -23,7 +23,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             published = "5 июля в 00:30",
             likedByMe = false,
             likesCount = 101,
-            sharedCount = 9983
+            sharedCount = 9983,
+            video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         ),
         Post(
             id = nextId++,
@@ -102,6 +103,10 @@ posts = posts.map{if (it.id != post.id) it else it.copy(content = post.content)}
         }
         data.value = posts
 
+    }
+
+    override fun video(id: Int) {
+        TODO("Not yet implemented")
     }
 
 }

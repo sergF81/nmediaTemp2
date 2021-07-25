@@ -88,6 +88,17 @@
 
         tools:layout_editor_absoluteY="72dp" />
 
+
+    <ImageButton
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_slideshow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        />
+
+
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/like"
         style="@style/Widget.AppCompat.LikeCheckBox"
@@ -98,7 +109,7 @@
         android:checked="true"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/barrier2" />
+        app:layout_constraintTop_toBottomOf="@id/play" />
 
 <!--    <TextView-->
 <!--        android:id="@+id/countLike"-->
@@ -120,7 +131,7 @@
         app:icon="@drawable/ic_shared"
 
         app:layout_constraintStart_toEndOf="@id/like"
-        app:layout_constraintTop_toTopOf="@id/barrier2" />
+        app:layout_constraintTop_toBottomOf="@id/play" />
 
 
     <ImageView
@@ -128,7 +139,7 @@
         android:layout_width="39dp"
         android:layout_height="37dp"
         app:layout_constraintEnd_toStartOf="@id/countEye"
-        app:layout_constraintTop_toTopOf="@id/barrier2"
+        app:layout_constraintTop_toBottomOf="@id/play"
         app:srcCompat="@mipmap/eye_1"
         tools:srcCompat="@sample/posts_avatars" />
 
@@ -144,6 +155,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/shared" />
 
+
+
     <View
         android:id="@+id/line"
         android:layout_width="359dp"
@@ -152,6 +165,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/like" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

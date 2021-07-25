@@ -1,6 +1,8 @@
 package ru.netology
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +15,7 @@ interface CallBackPost {
     fun removed(post: Post)
     fun edited(post: Post)
     fun canceled(post: Post)
+    fun video(post: Post)
 }
 
 class PostsAdapter(
@@ -47,9 +50,10 @@ class PostViewHolder(
             like.text = transferToK(post.likesCount)
             shared.text = transferToK(post.sharedCount)
             like.isChecked = post.likedByMe
-//            like.setImageResource(
-//                if (post.likedByMe) R.mipmap.hardfull_foreground else R.drawable.hard
-//            )
+
+            if (post.video == null) play.visibility = View.INVISIBLE
+            else View.VISIBLE
+
 
             like.setOnClickListener {
                 callBackPost.liked(post)
@@ -69,23 +73,18 @@ class PostViewHolder(
                             R.id.remove_post -> {
                                 callBackPost.removed(post)
                                 true
-
                             }
                             R.id.edit_post -> {
                                 callBackPost.edited(post)
-
-                             //   callBackPost.canceled(post)
-
                                 true
-
                             }
                             else -> false
-
                         }
                     }
-
                 }.show()
-
+            }
+            play.setOnClickListener {
+                callBackPost.video(post)
             }
         }
     }

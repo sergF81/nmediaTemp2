@@ -3,6 +3,7 @@ package ru.netology
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -50,15 +51,20 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun edited(post: Post) {
-//                val content = post.content
-//                intent.putExtra(Intent.EXTRA_TEXT, content)
-//                setResult(Activity.RESULT_OK, intent)
                 editPostLauncher.launch(post.content)
                 viewModel.edit(post)
             }
 
             override fun canceled(post: Post) {
 
+            }
+
+            override fun video(post: Post) {
+
+                val videoIntent =
+                    Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                startActivity(videoIntent)
+                viewModel.video(post.id)
             }
         })
 
@@ -73,11 +79,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeContent(result)
             viewModel.save()
         }
-
         binding.fab.setOnClickListener {
             newPostLauncher.launch()
         }
-
     }
 }
 
@@ -92,6 +96,7 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     }
 }
 
+//скрывание клавиатуры
 fun hideKeyboardFrom(context: Context, view: View?) {
     val imm =
         context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
