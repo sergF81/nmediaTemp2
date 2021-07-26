@@ -1,5 +1,7 @@
 package ru.netology
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -13,8 +15,8 @@ likedByMe = false,
 sharedCount = 0
 )
 
-class PostViewModel : ViewModel() {
-    private val repository: PostRepository = PostRepositoryInMemoryImpl()
+class PostViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository: PostRepository = PostRepositoryFileImpl(application)
     val data = repository.get()
     val edited = MutableLiveData(empty)
     fun like(id: Int) = repository.like(id)
