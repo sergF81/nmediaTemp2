@@ -3,6 +3,7 @@ package ru.netology
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class EditPostFragment : Fragment() {
 
         binding.contentTemp.text = text1
         binding.editTemp.requestFocus()
+        binding.editTemp.setText(text1)
         binding.save.setOnClickListener {
 
             viewModel.changeContent(binding.editTemp.text.toString())
