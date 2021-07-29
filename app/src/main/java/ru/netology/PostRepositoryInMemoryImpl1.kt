@@ -95,17 +95,26 @@ class PostRepositoryInMemoryImpl : PostRepository {
         if (post.id == 0) {
             posts = listOf(
                 post.copy(
-                    id = nextId++, author = "Me", likedByMe = false, published = "Now", likesCount = 0, sharedCount = 0
+                    id = nextId++,
+                    author = "Me",
+                    likedByMe = false,
+                    published = "Now",
+                    likesCount = 0,
+                    sharedCount = 0
                 )
             ) + posts
         } else {
-posts = posts.map{if (it.id != post.id) it else it.copy(content = post.content)}
+            posts = posts.map { if (it.id != post.id) it else it.copy(content = post.content) }
         }
         data.value = posts
 
     }
 
     override fun video(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun singlePost(id: Int) {
         TODO("Not yet implemented")
     }
 

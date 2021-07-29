@@ -9,4 +9,5 @@ interface PostRepository {
     fun share(id: Int)
     fun removeById(id: Int)
     fun video(id: Int)
+    fun singlePost(id: Int)
 }

@@ -97,4 +97,8 @@ class PostRepositoryFileImpl(private val context: Context) : PostRepository {
 
     override fun video(id: Int) {
     }
+
+    override fun singlePost(id: Int) {
+
+    }
 }

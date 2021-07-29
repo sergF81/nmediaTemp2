@@ -16,6 +16,7 @@ interface CallBackPost {
     fun edited(post: Post)
     fun canceled(post: Post)
     fun video(post: Post)
+    fun singlePostById(post: Post)
 }
 
 class PostsAdapter(
@@ -85,6 +86,10 @@ class PostViewHolder(
             }
             play.setOnClickListener {
                 callBackPost.video(post)
+            }
+
+            contents.setOnClickListener {
+                callBackPost.singlePostById(post)
             }
         }
     }
