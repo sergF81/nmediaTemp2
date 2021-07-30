@@ -34,6 +34,7 @@ class SinglePostFragment : Fragment() {
 
 
 
+
         binding.apply {
             author.text = post?.author.toString()
             published.text = post?.published
@@ -44,6 +45,7 @@ class SinglePostFragment : Fragment() {
 
             if (post?.video == null) play.visibility = View.INVISIBLE
             else View.VISIBLE
+
 
 
             like.setOnClickListener {
@@ -79,7 +81,7 @@ class SinglePostFragment : Fragment() {
                     setOnMenuItemClickListener { menuItem ->
                         when (menuItem.itemId) {
                             R.id.remove_post -> {
-                                findNavController().navigate(R.id.action_singlePostFragment_to_feedFragment)
+                                findNavController().popBackStack()
                                 true
                             }
                             R.id.edit_post -> {
