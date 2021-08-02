@@ -78,7 +78,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
                 it.copy(sharedCount = it.sharedCount + 1)
                     .also {
                         transferToK(it.sharedCount)
-                        println(transferToK(it.sharedCount))
                     }
             }
         }

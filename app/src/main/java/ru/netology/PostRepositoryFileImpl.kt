@@ -11,7 +11,7 @@ class PostRepositoryFileImpl(private val context: Context) : PostRepository {
 
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val gson = Gson()
-    private val fileName = "posts.json"
+    private val fileName = "posts_new3.json"
     private var nextId = 1
     private var posts = emptyList<Post>()
     private val data = MutableLiveData(posts)
@@ -22,6 +22,8 @@ class PostRepositoryFileImpl(private val context: Context) : PostRepository {
             context.openFileInput(fileName).bufferedReader().use {
                 posts = gson.fromJson(it, type)
                 data.value = posts
+                nextId = posts.lastIndex + 2
+                println("last index " + nextId)
             }
         } else {
             sync()
@@ -80,7 +82,6 @@ class PostRepositoryFileImpl(private val context: Context) : PostRepository {
                 it.copy(sharedCount = it.sharedCount + 1)
                     .also {
                         transferToK(it.sharedCount)
-                        println(transferToK(it.sharedCount))
                     }
             }
         }
